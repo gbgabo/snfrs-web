@@ -41,9 +41,11 @@
 </script>
 
 {#snippet numberCard(number, label)}
-	<div class="bg-zync-700/10 flex flex-col items-center rounded-lg p-4 backdrop-blur-md md:p-6">
+	<div
+		class="bg-zync-700/10 flex flex-col items-center rounded-lg border border-zinc-900/50 p-4 backdrop-blur-md"
+	>
 		<span class="text-4xl font-bold text-white">{number}</span>
-		<span class="mt-2 text-sm text-white/80">{label}</span>
+		<span class="mt-1 text-lg text-white/80">{label}</span>
 	</div>
 {/snippet}
 
@@ -52,7 +54,7 @@
 		<img src="/logo.svg" class="p-10" alt="" />
 		<div>
 			<div class="bg-zync-700/10 -mb-10 overflow-hidden rounded-2xl backdrop-blur-md">
-				<h1 class="bg-gray-200 px-3 py-2 text-lg font-bold">
+				<h1 class="bg-gray-200 px-4 py-2 text-xl font-bold tracking-wider">
 					{#if progress > 50}
 						Próximo evento
 					{:else if !isAllowed}
@@ -61,7 +63,7 @@
 						Evento rolando
 					{/if}
 				</h1>
-				<ul class="p-3 text-white">
+				<ul class="p-4 text-lg text-white">
 					<li>🎯 {nextEvent.title}</li>
 					<li>📝 {nextEvent.description}</li>
 					<li>
@@ -75,19 +77,19 @@
 				</ul>
 			</div>
 			<button
-				class="aspect-square w-full max-w-lg rounded-full text-center font-medium text-white shadow-xl/30 inset-shadow-indigo-500 transition-colors {isAllowed
+				class="aspect-square w-full max-w-lg rounded-full text-center font-medium text-stone-400 shadow-xl/30 inset-shadow-indigo-500 transition-colors {isAllowed
 					? 'shadow-black-700/30 bg-stone-600 hover:bg-stone-800 focus:ring-4 focus:ring-zinc-300 focus:outline-none'
 					: 'shadow-black-700/50 bg-stone-700'}"
 			>
 				{#if isAllowed}
 					<span class="text-xl">Bater Ponto</span>
 				{:else}
-					<p>Liberado pra bater em</p>
+					<p class="font-bold">Liberado pra bater em</p>
 					<div class="mt-4 grid grid-cols-4 flex-wrap gap-2 md:gap-4">
-						{@render numberCard(remaining.days, 'DIAS')}
-						{@render numberCard(remaining.hours, 'HORAS')}
-						{@render numberCard(remaining.minutes, 'MINUTOS')}
-						{@render numberCard(remaining.seconds, 'SEGUNDOS')}
+						{@render numberCard(remaining.days, 'D')}
+						{@render numberCard(remaining.hours, 'H')}
+						{@render numberCard(remaining.minutes, 'M')}
+						{@render numberCard(remaining.seconds, 'S')}
 					</div>
 				{/if}
 				<!-- {normalize(progress)} -->
