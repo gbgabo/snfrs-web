@@ -50,8 +50,8 @@
 {/snippet}
 
 <div class="flex h-full justify-center">
-	<div class="auto-auto-rows-auto my-auto grid h-fit w-full max-w-md gap-y-6 px-8">
-		<img src="/logo.svg" class="p-10" alt="" />
+	<div class="auto-auto-rows-auto my-auto grid h-fit w-full max-w-md gap-y-10 px-8">
+		<img src="/logo.svg" class="px-10" alt="" />
 		<div>
 			<div class="bg-zync-700/10 -mb-10 overflow-hidden rounded-2xl backdrop-blur-md">
 				<h1 class="bg-gray-200 px-4 py-2 text-xl font-bold tracking-wider">
