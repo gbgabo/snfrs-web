@@ -1,16 +1,15 @@
 <script lang="ts">
+	import type { PageProps } from './$types';
 	import { onMount } from 'svelte';
 
 	const normalize = (number: number) => {
 		return Math.floor(number).toString().padStart(2, '0');
 	};
 
-	const nextEvent = {
-		title: 'Rolê de Quinta',
-		description: 'Tangie',
-		startTime: new Date(2025, 6, 3, 19)
-	};
-	const oneWeekAgo = new Date(nextEvent.startTime);
+	let { data }: PageProps = $props();
+	const { title, description, startTime } = data.event;
+
+	const oneWeekAgo = new Date(startTime);
 	oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
 
 	let diff = $state(0);
@@ -22,13 +21,13 @@
 		seconds: normalize((diff % (1000 * 60)) / 1000)
 	});
 
-	let progress = $derived((100 * diff) / (nextEvent.startTime - oneWeekAgo));
+	let progress = $derived((100 * diff) / (startTime - oneWeekAgo));
 
 	onMount(() => {
 		let frame = requestAnimationFrame(function update() {
 			const now = new Date();
 			frame = requestAnimationFrame(update);
-			diff = nextEvent.startTime - now;
+			diff = startTime - now;
 		});
 
 		return () => {
@@ -63,15 +62,15 @@
 					{/if}
 				</h1>
 				<ul class="p-4 text-lg text-white">
-					<li>🎯 {nextEvent.title}</li>
-					<li>📝 {nextEvent.description}</li>
+					<li>🎯 {title}</li>
+					<li>📝 {description}</li>
 					<li>
 						🗓️ {new Intl.DateTimeFormat('pt-BR', {
 							year: 'numeric',
 							month: 'short',
 							day: 'numeric',
 							timeZone: 'UTC'
-						}).format(nextEvent.startTime)}
+						}).format(startTime)}
 					</li>
 				</ul>
 			</div>
