@@ -26,7 +26,6 @@
 
 	onMount(() => {
 		let frame = requestAnimationFrame(function update() {
-			// const now = new Date(2025, 6, 4, 6);
 			const now = new Date();
 			frame = requestAnimationFrame(update);
 			diff = nextEvent.startTime - now;
@@ -55,7 +54,7 @@
 		<div>
 			<div class="bg-zync-700/10 -mb-10 overflow-hidden rounded-2xl backdrop-blur-md">
 				<h1 class="bg-gray-200 px-4 py-2 text-xl font-bold tracking-wider">
-					{#if progress > 50}
+					{#if progress > 2}
 						Próximo evento
 					{:else if !isAllowed}
 						Evento em breve
