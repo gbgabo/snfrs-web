@@ -40,7 +40,7 @@
 	const isAllowed = $derived(progress < 0 && progress > -7);
 </script>
 
-{#snippet numberCard(number, label)}
+{#snippet numberCard(number: string, label: string)}
 	<div
 		class="bg-zync-700/10 flex flex-col items-center rounded-lg border border-zinc-900/50 p-4 backdrop-blur-md"
 	>
@@ -77,8 +77,8 @@
 				</ul>
 			</div>
 			<button
-				class="aspect-square w-full max-w-lg rounded-full text-center font-medium text-stone-400 shadow-xl/30 inset-shadow-indigo-500 transition-colors {isAllowed
-					? 'shadow-black-700/30 bg-stone-600 hover:bg-stone-800 focus:ring-4 focus:ring-zinc-300 focus:outline-none'
+				class="aspect-square w-full max-w-lg rounded-full text-center font-medium text-stone-200 shadow-xl/30 inset-shadow-indigo-500 transition-colors {isAllowed
+					? 'shadow-black-700/30 bg-stone-600 hover:bg-stone-800 hover:text-white focus:ring-4 focus:ring-zinc-300 focus:outline-none'
 					: 'shadow-black-700/50 bg-stone-700'}"
 			>
 				{#if isAllowed}
