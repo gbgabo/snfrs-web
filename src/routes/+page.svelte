@@ -1,13 +1,14 @@
 <script lang="ts">
+	import Icon from '@iconify/svelte';
 	import type { PageProps } from './$types';
 	import { onMount } from 'svelte';
+
+	let { data }: PageProps = $props();
+	const { title, description, startTime } = data.event;
 
 	const normalize = (number: number) => {
 		return Math.floor(number).toString().padStart(2, '0');
 	};
-
-	let { data }: PageProps = $props();
-	const { title, description, startTime } = data.event;
 
 	const oneWeekAgo = new Date(startTime);
 	oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
@@ -48,6 +49,10 @@
 {/snippet}
 
 <div class="flex h-full justify-center">
+	<a
+		class="shadow-black-700/50 fixed top-2 left-2 flex aspect-square w-10 rounded-full bg-stone-700 text-white"
+		href="/events"><Icon class="m-auto h-5 w-5" icon="mdi:event-clock" /></a
+	>
 	<div class="auto-auto-rows-auto my-auto grid h-fit w-full max-w-md gap-y-10 px-8">
 		<img src="/logo.svg" class="px-10" alt="" />
 		<div>
