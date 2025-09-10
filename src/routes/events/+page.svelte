@@ -29,41 +29,56 @@
 	<div class="sticky top-0 z-10 rounded-b-2xl bg-stone-700 p-6">
 		<h1 class="text-4xl tracking-wide text-white">Eventos</h1>
 	</div>
+	<div class="-mt-3 rounded-b-lg bg-zinc-500 px-3 pt-6 pb-3">
+		<p>Próximo Evento:</p>
+		<div>
+			{new Date('2024-06-20T19:00:00').toLocaleString('pt-BR', {
+				year: 'numeric',
+				month: 'short',
+				day: 'numeric',
+				hour: '2-digit',
+				minute: '2-digit',
+				timeZone: 'UTC'
+			})}
+		</div>
+	</div>
 	<div class="my-6">
-		{#each grouped as month}
+		{#each grouped as month (month.month)}
 			<h2 class="sticky top-24 z-10 w-fit rounded-r bg-zinc-700 px-2 text-white md:rounded">
 				{month.month}
 			</h2>
 			<div class="flex flex-col pr-4">
-				{#each month.events as event}
-					<div class="grid grid-cols-24">
-						<div class="relative col-span-1 -ml-[100%] md:col-span-2 md:ml-0">
-							<div class="absolute top-3 h-4 w-full">
-								<div class="m-auto h-4 w-4 rounded-full bg-white"></div>
+				{#each month.events as event (event.id)}
+					<a href={`/events/${event.id}`}>
+						<div class="grid grid-cols-24">
+							<div class="relative col-span-1 -ml-[100%] md:col-span-2 md:ml-0">
+								<div class="absolute top-3 h-4 w-full">
+									<div class="m-auto h-4 w-4 rounded-full bg-white"></div>
+								</div>
+								<div class="m-auto h-full w-2 bg-zinc-700"></div>
 							</div>
-							<div class="m-auto h-full w-2 bg-zinc-700"></div>
-						</div>
-						<div class="col-span-23 my-2 md:col-span-22">
-							<p class="mb-2 text-xl text-white">
-								{new Date(event.start_time).toLocaleString('pt-BR', {
-									year: 'numeric',
-									month: 'short',
-									day: 'numeric',
-									hour: '2-digit',
-									minute: '2-digit',
-									timeZone: 'UTC'
-								})}
-							</p>
-							<div class="overflow-hidden rounded-2xl bg-zinc-700/10 backdrop-blur-md">
-								<h1 class="bg-gray-200 px-4 py-2 text-xl font-bold tracking-wider">
-									{event.title}
-								</h1>
-								<ul class="p-4 text-lg text-white">
-									<li>📝 {event.description}</li>
-								</ul>
+							<div class="col-span-23 my-2 md:col-span-22">
+								<p class="mb-2 text-xl text-white">
+									{new Date(event.start_time).toLocaleString('pt-BR', {
+										year: 'numeric',
+										month: 'short',
+										day: 'numeric',
+										hour: '2-digit',
+										minute: '2-digit',
+										timeZone: 'UTC'
+									})}
+								</p>
+								<div class="overflow-hidden rounded-2xl bg-zinc-700/10 backdrop-blur-md">
+									<h1 class="bg-gray-200 px-4 py-2 text-xl font-bold tracking-wider">
+										{event.title}
+									</h1>
+									<ul class="p-4 text-lg text-white">
+										<li>📝 {event.description}</li>
+									</ul>
+								</div>
 							</div>
 						</div>
-					</div>
+					</a>
 				{/each}
 			</div>
 		{/each}
